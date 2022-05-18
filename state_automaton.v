@@ -27,12 +27,12 @@ always@(posedge pressed or posedge reset_key) begin
 	case(currentState)
 	reset: currentState = x ? state1 : reset;
 	state1: currentState = x ? state11 : reset;
-	state11: currentState = ~x ? state110 : reset;
-	state110: currentState = ~x ? state1100 : reset;
+	state11: currentState = ~x ? state110 : state1;
+	state110: currentState = ~x ? state1100 : state1;
 	state1100: currentState = x ? state11001 : reset;
 	state11001: currentState = x ? state110011 : reset;
-	state110011: currentState = ~x ? state1100110 : reset;
-	state1100110: currentState = ~x ? state1 : reset;
+	state110011: currentState = ~x ? state1100110 : state1;
+	state1100110: currentState = x ? state1 : reset;
 	default currentState = reset;
 	endcase
 end
